@@ -1,14 +1,14 @@
 Monachus [![Build Status](https://travis-ci.org/ssola/monachus.png?branch=master)](https://travis-ci.org/ssola/monachus)
 ========
 
-Monachus is a library to help your working with text, from any language. Monachus means Monk in Latin language, I think it's an good name to define this library, they were used to work a lot with books (strings) in a lot of languages.
+Monachus is a library that helps you working with text, in any language. Monachus means Monk in Latin language, I think it's a good name to define this library. Monks were used to work a lot with books (strings) in a wide range of languages.
 
-This library has been created to having in mind these PHP versions: 5.5, 5.4, 5.3
+This library has been created keeping in mind these PHP versions: 5.5, 5.4, 5.3
 
 Install
 -------
 
-The simple way is with Composer, just add on your composer.json this line:
+The simplest way is with Composer, just add these lines to your composer.json:
 
     "repositories": [
         {
@@ -23,7 +23,7 @@ How it works
 **String**
 ______
 
-The first thing we need to know is how to use the String class, this class generates an object with a specific text. It will preserve that text in UTF-8 charset along the way.
+The first thing we need to know is how to use the String class. This class generates an object with a specific text. It will preserve that text in UTF-8 charset along the way.
 
 ```php
 include_once("./vendor/autoload.php");
@@ -79,7 +79,7 @@ $tokenizerJp = new Tokenizer(new Monachus\Tokenizers\Japanase());
 var_dump($tokenizerJp);
 ```
 
-As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how to create these adapters.
+As you have seen, we can use our own adapters to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how to create these adapters.
 
 ```php
 class MyTokenizer implements Monachus\Interfaces\TokenizerInterface
@@ -114,7 +114,7 @@ $config->max = 3; // we're creating trigrams.
 $ngram = new Ngram($config);
 var_dump($ngram->parse($text));
 ```
-Do you need your own N-gram parser? Sure! You can create your own parsers as well.
+Do you need your own N-gram parser? No problem! You can create your own parsers as well.
 
 ```php
 class MyParser implements Monachus\Interfaces\NgramParserInterface
@@ -126,7 +126,7 @@ class MyParser implements Monachus\Interfaces\NgramParserInterface
 }
 ```
 
-And now...
+And then...
 
 ```php
 include_once("./vendor/autoload.php");
