@@ -67,7 +67,7 @@ $tokenizerJp = new Tokenizer(new Monachus\Tokenizers\Japanase());
 var_dump($tokenizerJp);
 ```
 
-As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how create these adapters.
+As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how to create these adapters.
 
 ```php
 class MyTokenizer implements Monachus\Interfaces\TokenizerInterface
