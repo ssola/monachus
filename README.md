@@ -1,9 +1,9 @@
 Monachus [![Build Status](https://travis-ci.org/ssola/monachus.png?branch=master)](https://travis-ci.org/ssola/monachus)
 ========
 
-Library to handle any kind of text in any language and alphabet. Every single PHP developer knows about the troubles to work with different languages and charsets. For example, imagine do you want to find a substring
-inside a primary string, but that string is written in Japanese or Arabic. You can't use the common tools (strlen, substr, ...) because PHP (at the moment) doesn't have a good UTF-8 support at all. With Monachus
-this should be fixed in an easy way.
+Monachus is a library to help your working with text, from any language. Monachus means Monk in Latin language, I think it's an good name to define this library, they were used to work a lot with books (strings) in a lot of languages.
+
+This library has been created to having in mind these PHP versions: 5.5, 5.4, 5.3
 
 How it works
 ------------
@@ -11,7 +11,7 @@ How it works
 **String**
 ______
 
-The first thing we need to know is how to use the String class, this class generates an object with a specific text. It will preserve the text in UTF-8 charset along the way.
+The first thing we need to know is how to use the String class, this class generates an object with a specific text. It will preserve that text in UTF-8 charset along the way.
 
 ```php
 include_once("./vendor/autoload.php");
@@ -22,7 +22,7 @@ $text = new String("Hello World!");
 echo $text;
 ```
 
-Obviously this code is generating a new String object with a value and then print it.
+Obviously this code is generating a new String object with a value and then it's printed.
 
 Then you can do things like:
 
@@ -45,7 +45,7 @@ This kind of objects is used extensively in this library in order to perform all
 **Tokenizer**
 _____________
 
-Do you need to tokenize a string? Monachus can do it for you! We support a lot of languages, Japanese included! But if your language is not supported you can create your own Tokenizer easily, let's see how it works.
+Do you need to tokenize a string? Monachus can do it for you! We support a lot of languages, Japanese included! But if your language is not supported... relax! You can create your own adapters in order to tokenize different languages.
 
 Let's do a simple example:
 
@@ -67,7 +67,7 @@ $tokenizerJp = new Tokenizer(new Monachus\Tokenizers\Japanase());
 var_dump($tokenizerJp);
 ```
 
-As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now is time to explain how you can create this adapters.
+As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how create these adapters.
 
 ```php
 class MyAdapter implements Monachus\Interfaces\TokenizerInterface
@@ -82,3 +82,53 @@ $tokenizer = new Monachus\Tokenizer(new MyAdapter());
 var_dump($tokenizer->tokenize(new Monachus\String("Поиск информации в интернете"));
 ```
 
+**N-Gram**
+__________
+
+Yeah! Monachus is able to generate different levels of N-gram sequences, for example a bigram or trigram. But let's see how it works.
+
+```php
+include_once("./vendor/autoload.php");
+
+use Monachus\String as String;
+use Monachus\Ngram as Ngram;
+use Monachus\Config as Config;
+
+$text = new String("This is an awesome text");
+
+$config = new Config();
+$config->max = 3; // we're creating trigrams.
+
+$ngram = new Ngram($config);
+var_dump($ngram->parse($text));
+```
+Do you need your own N-gram parser? Sure! You can create your own parsers as well.
+
+```php
+class MyParser implements Monachus\Interfaces\NgramParserInterface
+{
+  public function parse(String $string, $level)
+  {
+    // your awesome code!
+  }
+}
+```
+
+And now...
+
+```php
+include_once("./vendor/autoload.php");
+
+use Monachus\String as String;
+use Monachus\Ngram as Ngram;
+use Monachus\Config as Config;
+
+$text = new String("This is an awesome text");
+
+$config = new Config();
+$config->max = 3; // we're creating trigrams.
+
+$ngram = new Ngram($config);
+$ngram->setParser(new MyParser());
+var_dump($ngram->parse($text));
+```
