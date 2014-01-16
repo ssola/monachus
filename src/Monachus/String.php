@@ -39,12 +39,27 @@ class String
         return mb_strpos($this->string, $needle, 0, $this->getCharset());
     }
 
+    public function toLowercase()
+    {
+        return mb_strtolower($this->string, $this->getCharset());
+    }
+
+    public function toUppercase()
+    {
+        return mb_strtoupper($this->string, $this->getCharset());
+    }
+
     public function setCharset($newCharset)
     {
         if($this->charset == $newCharset)
             return true;
 
         $this->string = iconv($this->getCharset(), $newCharset, $this->string);
+    }
+
+    public function replace($find, $replace)
+    {
+        $this->string = mb_ereg_replace($find, $replace, $this->string, $this->getCharset());
     }
 
     public function getCharset()

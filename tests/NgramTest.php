@@ -41,7 +41,7 @@ class NgramTest extends PHPUnit_Framework_TestCase
             "llo" => array("count" => 1),
         );
         
-        $this->assertEquals($ngrams, $expectedResult);
+        $this->assertEquals($expectedResult, $ngrams);
     }
 
     public function testCreateNgramLevelThreeSimpleSentence()
@@ -67,7 +67,7 @@ class NgramTest extends PHPUnit_Framework_TestCase
             "ld!" => array("count" => 1),
         );
         
-        $this->assertEquals($ngrams, $expectedResult);       
+        $this->assertEquals($expectedResult, $ngrams);       
     }
 
     public function testCreateNgramLevelThreeWithRussianWord()
@@ -88,7 +88,7 @@ class NgramTest extends PHPUnit_Framework_TestCase
             "сти" => array("count" => 1)
         );
         
-        $this->assertEquals($ngrams, $expectedResult);        
+        $this->assertEquals($expectedResult, $ngrams);        
     }
 
     public function testCreateNgramLevelThreeWithJapanaseWord()
@@ -109,6 +109,6 @@ class NgramTest extends PHPUnit_Framework_TestCase
             "分更新" => array("count" => 1)
         );
         
-        $this->assertEquals($ngrams, $expectedResult);        
+        $this->assertEquals($expectedResult, $ngrams);        
     }    
 }

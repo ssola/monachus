@@ -1,4 +1,7 @@
 <?php
+/*
+Based on: http://eliteinformatiker.de/2012/07/02/easy-japanese-tokenization-text-hiragana-katakana-kanji/
+*/
 namespace Monachus\Tokenizers;
 
 use Monachus\Interfaces as Interfaces;

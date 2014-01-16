@@ -20,7 +20,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase
         $tokenizer = new Monachus\Tokenizer();
         $tokenized = $tokenizer->tokenize($text);
 
-        $this->assertEquals(count($tokenized), 8);
+        $this->assertEquals(8, count($tokenized));
     }
 
     public function testTokenizeEmptyString()
@@ -30,7 +30,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase
 
         $tokenized = $tokenizer->tokenize($text);
 
-        $this->assertEquals(count($tokenized), 0);
+        $this->assertEquals(0, count($tokenized));
     }
 
     public function testTokenizeJapanaseAdapterEmptyString()
@@ -40,7 +40,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase
 
         $tokenized = $tokenizer->tokenize($text);
 
-        $this->assertEquals(count($tokenized), 0);
+        $this->assertEquals(0, count($tokenized));
     }    
 
     public function testTokenizeJapanaseString()
@@ -48,7 +48,7 @@ class TokenizerTest extends PHPUnit_Framework_TestCase
         $text = new Monachus\String("きょう（16日）は太平洋側を中心に晴れた所が多いが、最高気温は平年並みから平年より低くなった");
         $tokenizer = new Monachus\Tokenizer(new Monachus\Tokenizers\Japanase());
         $tokenized = $tokenizer->tokenize($text);
-        $this->assertEquals(count($tokenized), 25);
+        $this->assertEquals(25, count($tokenized));
     }
 
     public function testTokenizeLongText()
@@ -61,6 +61,6 @@ Mittels erweiterte Backus-Naur-Form (EBNF) kann ein Tokenizer formal spezifizier
         $tokenizer = new Monachus\Tokenizer();
         $tokenized = $tokenizer->tokenize($text);
 
-        $this->assertEquals(count($tokenized), 161);        
+        $this->assertEquals(161, count($tokenized));        
     }
 }

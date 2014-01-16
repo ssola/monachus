@@ -1,4 +1,7 @@
 <?php
+/*
+ Based on PHPir code: http://phpir.com/language-detection-with-n-grams
+*/
 namespace Monachus\Ngram\Parsers;
 
 use Monachus\Interfaces\NgramParserInterface as NgramParserInterface;
@@ -11,9 +14,6 @@ class Generic implements NgramParserInterface
 
     public function parse(String $string, $n = 3)
     {
-        $beforeEncoding = mb_internal_encoding();
-        mb_internal_encoding($string->getCharset());
-
         $ngrams = array();
         $len = $string->length();
 
@@ -26,16 +26,18 @@ class Generic implements NgramParserInterface
                     $ng .= $string->substract($i-$j, 1);
                 }
 
-                $ngram = mb_strtolower(mb_ereg_replace(" ", self::SPACE_REPLACEMENT, $ng));
+                $ngram = new String($ng);
+                $ngram->replace(" ", self::SPACE_REPLACEMENT);
+                $offset = $ngram->toLowercase();
 
-                if(isset($ngrams[$ngram])) {
-                    $ngrams[$ngram] = (
+                if(isset($ngrams[$offset])) {
+                    $ngrams[$offset] = (
                         array(
-                            "count" => $ngrams[$ngram]["count"] + 1,
+                            "count" => $ngrams[$offset]["count"] + 1,
                         )
                     );
                 } else {
-                    $ngrams[$ngram] = (
+                    $ngrams[$offset] = (
                         array(
                             "count" => 1,
                         )
@@ -43,8 +45,6 @@ class Generic implements NgramParserInterface
                 }
             }
         }
-
-        mb_internal_encoding($beforeEncoding);
 
         return $ngrams;
     }
