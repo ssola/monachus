@@ -70,7 +70,7 @@ var_dump($tokenizerJp);
 As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now it's time to explain you how create these adapters.
 
 ```php
-class MyAdapter implements Monachus\Interfaces\TokenizerInterface
+class MyTokenizer implements Monachus\Interfaces\TokenizerInterface
 {
   public function tokenize(Monachus\String $string)
   {
@@ -78,7 +78,7 @@ class MyAdapter implements Monachus\Interfaces\TokenizerInterface
   }
 }
 
-$tokenizer = new Monachus\Tokenizer(new MyAdapter());
+$tokenizer = new Monachus\Tokenizer(new MyTokenizer());
 var_dump($tokenizer->tokenize(new Monachus\String("Поиск информации в интернете"));
 ```
 
