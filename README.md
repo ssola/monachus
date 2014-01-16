@@ -5,6 +5,18 @@ Monachus is a library to help your working with text, from any language. Monachu
 
 This library has been created to having in mind these PHP versions: 5.5, 5.4, 5.3
 
+Install
+-------
+
+The simple way is with Composer, just add on your composer.json this line:
+
+    "repositories": [
+        {
+        "type": "git",
+        "url": "https://github.com/ssola/monachus.git"
+        }
+    ]
+
 How it works
 ------------
 
