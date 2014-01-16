@@ -1,4 +1,4 @@
-Monachus [![Build Status](https://travis-ci.org/ssola/monachus)](https://travis-ci.org/ssola/monachus)
+Monachus [![Build Status](https://travis-ci.org/ssola/monachus.png?branch=master)](https://travis-ci.org/ssola/monachus)
 ========
 
 Library to handle any kind of text in any language and alphabet. Every single PHP developer knows about the troubles to work with different languages and charsets. For example, imagine do you want to find a substring
