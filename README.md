@@ -41,3 +41,44 @@ if($text->equals("Hello World!"))
 ```
 
 This kind of objects is used extensively in this library in order to perform all the actions with the proper charset.
+
+**Tokenizer**
+_____________
+
+Do you need to tokenize a string? Monachus can do it for you! We support a lot of languages, Japanese included! But if your language is not supported you can create your own Tokenizer easily, let's see how it works.
+
+Let's do a simple example:
+
+```php
+include_once("./vendor/autoload.php");
+
+use Monachus\String as String;
+use Monachus\Tokenizer as Tokenizer;
+
+$text = new String("This is a text");
+$tokenizer = new Tokenizer();
+
+var_dump($tokenizer->tokenize($text));
+
+// Now imagine you need to tokenize a Japanase text
+$textJp = new String("は太平洋側を中心に晴れた所が多いが");
+$tokenizerJp = new Tokenizer(new Monachus\Tokenizers\Japanase());
+
+var_dump($tokenizerJp);
+```
+
+As you seen we can use our own adapters in order to tokenize complex languages like Japanase or Chinese. Now is time to explain how you can create this adapters.
+
+```php
+class MyAdapter implements Monachus\Interfaces\TokenizerInterface
+{
+  public function tokenize(Monachus\String $string)
+  {
+    // your awesome code!
+  }
+}
+
+$tokenizer = new Monachus\Tokenizer(new MyAdapter());
+var_dump($tokenizer->tokenize(new Monachus\String("Поиск информации в интернете"));
+```
+
